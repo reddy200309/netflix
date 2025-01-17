@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Your Name - Portfolio</title>
+    <style>
+        /* Resetting margin, padding, and box-sizing for all elements */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Styling for the body element */
+body {
+    font-family: Arial, sans-serif; /* Font family for the entire page */
+    background-color: #141414; /* Dark background for the website */
+    color: #ffffff; /* White text color for better readability */
+    line-height: 1.6; /* Line height for consistent spacing between lines */
+}
+
+/* Anchor link styling */
+a {
+    color: #ffffff; /* White color for links */
+    text-decoration: none; /* Removes underline from links */
+}
+
+/* Header styles */
+header {
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
+    position: fixed; /* Fixes the header at the top of the page */
+    top: 0; /* Aligns header at the top */
+    left: 0;
+    right: 0;
+    z-index: 1000; /* Ensures header stays on top of other content */
+    padding: 1rem; /* Padding inside the header */
+    display: flex; /* Flexbox for alignment */
+    justify-content: space-between; /* Space between logo and navigation */
+    align-items: center; /* Vertically centers items in the header */
+}
+
+/* Logo styling */
+.logo {
+    font-size: 2rem; /* Large font size for logo */
+    font-weight: bold; /* Bold font for emphasis */
+    color: #e50914; /* Netflix-like red color for logo */
+}
+
+/* Navigation list styles */
+nav ul {
+    display: flex; /* Horizontal alignment of navigation items */
+    list-style: none; /* Removes bullet points */
+}
+
+/* Navigation list item styles */
+nav ul li {
+    margin-left: 1rem; /* Adds space between navigation items */
+}
+
+/* Navigation link styling */
+nav ul li a {
+    transition: color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+/* Navigation link hover effect */
+nav ul li a:hover {
+    color: #e50914; /* Changes link color to red on hover */
+}
+
+/* Social media icon styles */
+.social-icons a {
+    margin-left: 1rem; /* Space between social media icons */
+    font-size: 1.2rem; /* Size of icons */
+    transition: color 0.3s ease; /* Smooth hover transition */
+}
+
+/* Social media icon hover effect */
+.social-icons a:hover {
+    color: #e50914; /* Changes icon color to red on hover */
+}
+
+/* Hero section styles */
+.hero {
+    height: 100vh; /* Full viewport height */
+    background-image: url('https://wallpapers.com/images/featured/laptop-murjp1nk4lp1idlt.jpg'); /* Hero background image */
+    background-size: cover; /* Ensures the image covers the entire section */
+    background-position: center; /* Centers the background image */
+    display: flex; /* Flexbox for alignment */
+    align-items: center; /* Centers content vertically */
+    justify-content: center; /* Centers content horizontally */
+    text-align: center; /* Centers text within the hero */
+    position: relative; /* Relative positioning for overlay */
+}
+
+/* Overlay effect for the hero section */
+.hero::before {
+    content: ''; /* Empty content for overlay */
+    position: absolute; /* Covers the entire hero section */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent overlay */
+}
+
+/* Content inside the hero section */
+.hero-content {
+    position: relative; /* Ensures content stays above the overlay */
+    z-index: 1; /* Places content above the overlay */
+}
+
+/* Hero title styling */
+.hero h1 {
+    font-size: 3rem; /* Large font size for the title */
+    margin-bottom: 1rem; /* Space below the title */
+}
+
+/* Hero paragraph styling */
+.hero p {
+    font-size: 1.5rem; /* Slightly smaller font size for paragraph */
+    margin-bottom: 2rem; /* Space below the paragraph */
+}
+
+/* Call-to-action button styling */
+.cta-button {
+    display: inline-block; /* Makes the button inline */
+    background-color: #e50914; /* Red background for the button */
+    color: #ffffff; /* White text color */
+    padding: 0.8rem 2rem; /* Padding inside the button */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 1.2rem; /* Button text size */
+    transition: background-color 0.3s ease; /* Smooth hover transition */
+}
+
+/* Call-to-action button hover effect */
+.cta-button:hover {
+    background-color: #ff0a16; /* Slightly lighter red on hover */
+}
+
+/* Main content styles */
+main {
+    max-width: 1200px; /* Maximum width for main content */
+    margin: 0 auto; /* Centers the content */
+    padding: 4rem 1rem; /* Padding around the content */
+}
+
+/* Section styling */
+section {
+    margin-bottom: 4rem; /* Space below each section */
+}
+
+/* Section heading styling */
+h2 {
+    font-size: 2rem; /* Font size for section headings */
+    margin-bottom: 2rem; /* Space below the heading */
+    color: #e50914; /* Red color for headings */
+}
+
+/* About section styles */
+.about-content {
+    display: flex; /* Flexbox for layout */
+    gap: 2rem; /* Space between image and text */
+    align-items: center; /* Aligns items vertically */
+}
+
+/* About image styling */
+.about-image {
+    flex: 1; /* Allocates 1 part of space */
+    display: flex; /* Flexbox for alignment */
+    justify-content: center; /* Centers image horizontally */
+    align-items: center; /* Centers image vertically */
+}
+
+/* About image properties */
+.about-image img {
+    width: 300px; /* Fixed width for image */
+    height: 300px; /* Fixed height for image */
+    border-radius: 50%; /* Circular image */
+    border: 5px solid transparent; /* Transparent border */
+    transition: border-color 0.3s ease; /* Smooth border color transition */
+}
+
+/* Text content in the About section */
+.about-text {
+    flex: 2; /* Allocates 2 parts of space */
+    font-size: 1.1rem; /* Font size for the text */
+    line-height: 1.5; /* Spacing between lines */
+}
+
+/* Active state for the image border */
+.about-image img.active-border {
+    border-color: #e50914; /* Red border when active */
+}
+
+
+        /* Education section styles */
+        .education-item {
+            background-color: #1f1f1f;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+        }
+
+        .education-item h3 {
+            color: #e50914;
+        }
+
+        /* Skills section styles */
+        .skills-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .skill-item {
+            background-color: #1f1f1f;
+            padding: 1rem;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        /* Projects section styles */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .project-card {
+            background-color: #1f1f1f;
+            border-radius: 5px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: scale(1.05);
+        }
+
+        .project-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .project-info {
+            padding: 1rem;
+        }
+
+        .project-info h3 {
+            color: #e50914;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Contact section styles */
+        form {
+            display: grid;
+            gap: 1rem;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: none;
+            background-color: #1f1f1f;
+            color: #ffffff;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #e50914;
+            color: #ffffff;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #ff0a16;
+        }
+
+        /* Footer styles */
+        footer {
+            background-color: #1f1f1f;
+            color: #ffffff;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 4rem;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .about-content {
+                flex-direction: column;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                display: none;
+            }
+        }
+
+        .timeline {
+  width: 80%;
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.timeline-content {
+  padding: 20px;
+  background: black;
+  box-shadow: 5px 5px 10px #e50914, -5px -5px 10px #e50914;
+  border-radius: 5px;
+  color: white;
+  transition: transform 0.4s ease;
+  margin: 1rem;
+  overflow-wrap: break-word;
+}
+
+.timeline-content:hover {
+  transform: scale(1.05);
+}
+
+.timeline-img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.timeline-content:hover .timeline-img {
+  transform: rotate(360deg);
+}
+
+.timeline-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Space between image and text */
+  gap: 20px; /* Adds space between image and text */
+}
+
+.timeline-text {
+  flex-grow: 1;
+}
+
+
+/* Responsive Design for Timeline */
+@media screen and (max-width: 768px) {
+  .timeline {
+    display: flex;
+    flex-direction: column; /* Stack content vertically on small screens */
+    align-items: center;
+  }
+
+  .timeline-content {
+    width: 90%; /* Adjust the width to fit the screen */
+    margin: 10px 0;
+  }
+
+  .timeline-item {
+    flex-direction: column; /* Stack image and text vertically */
+    align-items: center; /* Center items */
+    text-align: center;
+  }
+
+  .timeline-img {
+    margin-bottom: 10px; /* Add spacing below the image */
+  }
+
+  .timeline-middle {
+    display: none; /* Hide the vertical line in the middle for mobile */
+  }
+
+  .timeline-circle {
+    display: none; /* Hide the circles on the timeline for mobile */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .timeline-content {
+    padding: 15px; /* Reduce padding on very small screens */
+  }
+
+  .timeline-img {
+    width: 80px;
+    height: 80px; /* Make the image smaller */
+  }
+}
+
+@keyframes typing {
+    0% {
+        width: 0;
+    }
+    50% {
+        width: 100%;
+    }
+    100% {
+        width: 0;
+    }
+}
+
+/* Animation for infinite transitions */
+@keyframes fade {
+    0%, 100% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+/* Classes for cycling phrases */
+.typewriter-content {
+    display: inline-block;
+    animation: fade 3s linear infinite, typing 3s steps(30) infinite;
+    
+}
+
+#typewriter-text {
+    display: inline-block;
+    font-size: 20px;
+    font-weight: bold;
+    color: #e50914; /* Text color applied */
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+
+
+#certifications {
+  padding: 50px 0;
+}
+
+.certifications-row {
+  display: flex;
+  flex-wrap: wrap; /* Allow items to wrap onto the next line */
+  justify-content: center; /* Center the items */
+  gap: px; /* Space between certification items */
+}
+
+.certification {
+  flex: 0 1 calc(25% - 20px); /* Set width to 25% minus the gap for larger screens */
+  text-align: center;
+  margin: 10px; /* Margin for spacing */
+}
+
+.cert-icon {
+  width: 200px; /* Set a fixed width for the certification icons */
+  height: 200px; /* Set a fixed height for the certification icons */
+}
+
+.cert-buttons {
+  display: flex; /* Use flexbox to align buttons */
+  justify-content: center; /* Center buttons */
+  margin-top: 10px; /* Space above the buttons */
+}
+
+.btn-icon {
+  text-decoration: none; /* Remove underline from links */
+  margin: 0 5px; /* Space between buttons */
+  font-size: 24px; /* Increase font size for better visibility */
+  transition: transform 0.3s; /* Add transition effect */
+}
+
+/* Add hover effect for buttons */
+.btn-icon:hover {
+  transform: scale(1.1); /* Slightly increase size on hover */
+}
+
+/* Responsive behavior */
+@media screen and (max-width: 1024px) {
+  .certification {
+      flex: 0 1 calc(33.33% - 20px); /* Set width to 33% for medium screens */
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .certification {
+      flex: 0 1 calc(50% - 20px); /* Set width to 50% for smaller screens */
+  }
+
+  .cert-icon {
+      width: 80px; /* Adjust icon size for smaller screens */
+      height: 80px; /* Adjust icon size for smaller screens */
+  }
+
+  .btn-icon {
+      font-size: 20px; /* Decrease button font size for smaller screens */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .certification {
+      flex: 0 1 100%; /* Set width to 100% for very small screens */
+  }
+
+  .cert-icon {
+      width: 200px; /* Further adjust icon size for very small screens */
+      height: 200px; /* Further adjust icon size for very small screens */
+  }
+
+  .btn-icon {
+      font-size: 18px; /* Further decrease button font size for very small screens */
+  }
+}
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">PORTFOLIO</div>
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="social-icons">
+            <a href="https://www.linkedin.com/in/iammanikanta/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/reddy200309" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="mailto:your.iammanikantareddy@example.com"><i class="fas fa-envelope"></i></a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>MANIKANTA REDDY KARRI</h1>
+            <p id="typewriter-text"></p>
+            <!-- <a href="#projects" class="cta-button">View My Work</a> -->
+        </div>
+    </section>
+    
+
+    <main>
+        <section id="about">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="static/img3.png" alt="Your Name">
+                </div>
+                <div class="about-text">
+                    I am a final-year Computer Science student at KL University with a passion for web development, cloud computing, 
+                and solving complex data structures and algorithms problems. I am continuously improving my skills in Java, MySQL, 
+                AWS, Git, and front-end technologies. My projects are focused on efficiency and scalability, and I love working 
+                on innovative tech solutions.
+                </div>
+            </div>
+        </section>
+
+        <section id="education">
+            <div class="container">
+                <h2>Education</h2>
+                <section class="design-section">
+                    <div class="timeline">
+                        <div class="timeline-empty"></div>
+                        <div class="timeline-middle">
+                            <div class="timeline-circle"></div>
+                        </div>
+                        <div class="timeline-component timeline-content">
+                            <div class="timeline-item">
+                                <img src="https://pbs.twimg.com/profile_images/964884316563030016/aOT4DBDL_400x400.jpg" alt="Profile 1" class="timeline-img">
+                                <div class="timeline-text">
+                                    <h3>KL University</h3>
+                                    <p>B.Tech in Computer Science and Engineering (2021 - 2025), 9.36/10 CGPA till now</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="timeline-component timeline-content">
+                            <div class="timeline-item">
+                                <img src="https://media.licdn.com/dms/image/v2/C4E0BAQGCt-ugqJM7fQ/company-logo_200_200/company-logo_200_200/0/1630622257402?e=2147483647&v=beta&t=rDLxs6BGPJLS1HSBft1qJVZX4oEl5T7q9orrRlw2Ul8" alt="Profile 2" class="timeline-img">
+                                <div class="timeline-text">
+                                    <h3>SASI New Gen Jr College</h3>
+                                    <p>Intermediate (2019 - 2021), 946/1000 marks</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="timeline-middle">
+                            <div class="timeline-circle"></div>
+                        </div>
+                        <div class="timeline-empty"></div>
+                        <div class="timeline-empty"></div>
+                        <div class="timeline-middle">
+                            <div class="timeline-circle"></div>
+                        </div>
+                        <div class="timeline-component timeline-content">
+                            <div class="timeline-item">
+                                <img src="https://pbs.twimg.com/profile_images/1550106921180352512/97m_kb2x_400x400.jpg" alt="Profile 3" class="timeline-img">
+                                <div class="timeline-text">
+                                    <h3>Sri Chaitanya Techno School</h3>
+                                    <p>Secondary Education (2018 - 2019), 9.7/10 CGPA</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2>Skills</h2>
+            <div class="skills-list">
+                <div class="skill-item">HTML5</div>
+                <div class="skill-item">CSS</div>
+                <div class="skill-item">JAVA</div>
+                <div class="skill-item">SQL</div>
+                <div class="skill-item">AWS</div>
+                <div class="skill-item">MongoDB</div>
+                <div class="skill-item">Cloud Computing</div>
+                <div class="skill-item">PostgreSQL</div>
+                <div class="skill-item">Postman</div>
+                <div class="skill-item">Git</div>
+                <div class="skill-item">Leadership</div>
+                <div class="skill-item">Adaptability</div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2>Featured Projects</h2>
+            <div class="projects-grid">
+                <a href="https://www.linkedin.com/posts/iammanikanta_creating-an-email-marketing-campaign-system-activity-7179062349629206529-gouj/?utm_source=share&utm_medium=member_desktop" target="_blank" class="project-card">
+                    <div class="project-image" style="background-image: url('https://directpaynet.com/wp-content/uploads/2024/04/ai-email-marketing.jpg');"></div>
+                    <div class="project-info">
+                        <h3>Email Marketing Campaign By Using AWS</h3>
+                        <p>Developed an email marketing campaign system on AWS using Amazon SES, S3, Lambda, and EventBridge for automated, personalized email sending, showcasing skills in cloud services and email management.</p>
+                    </div>
+                </a>
+                <a href="https://www.linkedin.com/posts/iammanikanta_hackathon-techinnovation-studentsuccess-activity-7127576978852909056-1rMB?utm_source=share&utm_medium=member_desktop" target="_blank" class="project-card">
+                    <div class="project-image" style="background-image: url('https://www.iitms.co.in/products/img/SIS-banner.webp');"></div>
+                    <div class="project-info">
+                        <h3>Student Grade Hub</h3>
+                        <p>Developed a Student Result & Grade Management System during a university hackathon using CSS, HTML, JavaScript, and Spring framework, focusing on efficient grade management and seamless performance.</p>
+                    </div>
+                </a>
+                <a href="https://amazon2258.netlify.app/" target="_blank" class="project-card">
+                    <div class="project-image" style="background-image: url('https://www.amalytix.com/blog/amazon_ai_features_cover.jpg');"></div>
+                    <div class="project-info">
+                        <h3>AWS Clone</h3>
+                        <p>Built an AWS clone using HTML and CSS, demonstrating proficiency in front-end design and layout while replicating key features and aesthetics of the AWS platform.</p>
+                    </div>
+                </a>
+                <a href="https://www.linkedin.com/posts/iammanikanta_python-pfsd-pythondeveloper-activity-7024420855686332416-36df?utm_source=share&utm_medium=member_desktop" target="_blank" class="project-card">
+                    <div class="project-image" style="background-image: url('https://esoftskills.com/hospitality/wp-content/uploads/2023/11/Customer-Service-In-The-Hospitality-Industry-1-768x512.png');"></div>
+                    <div class="project-info">
+                        <h3>Hospitality Management System</h3>
+                        <p>Utilized Django, SQLite3, and PostgreSQL in the "Food and Hospitality Management System" project, enhancing skills in web development and database management while focusing on effective user interaction and analysis.</p>
+                    </div>
+                </a>
+            </div>
+        </section>
+        
+
+        <section id="certifications">
+            <div class="container">
+                <h2>Certifications</h2>
+                <div class="certifications-row">
+                    <div class="certification">
+                        <img src="https://images.credly.com/size/680x680/images/00634f82-b07f-4bbd-a6bb-53de397fc3a6/image.png" alt="Certification 1" class="cert-icon">
+                        <div class="cert-buttons">
+                            <a href="https://www.credly.com/badges/185c125a-4cde-4a13-8812-98672be50d9d/linked_in_profile" class="btn-icon">🔗</a>
+                            <a href="https://drive.google.com/file/d/1IR1rtPeWSU3q1hA4sK2YnfdwB3G4QY8W/view" class="btn-icon">📥</a>
+                        </div>
+                    </div>
+                    <div class="certification">
+                        <img src="https://images.credly.com/size/680x680/images/b9feab85-1a43-4f6c-99a5-631b88d5461b/image.png" alt="Certification 2" class="cert-icon">
+                        <div class="cert-buttons">
+                            <a href="https://www.credly.com/badges/1e5fafd6-245d-4d38-9607-2046b24d05ce/public_url" class="btn-icon">🔗</a>
+                            <a href="https://drive.google.com/file/d/1Bnb8d_BmlVU_b-u83sysKqDl34sPqBAu/view" class="btn-icon">📥</a>
+                        </div>
+                    </div>
+                    <div class="certification">
+                        <img src="https://images.credly.com/size/680x680/images/ae7dd2bd-1d04-43d9-b148-1ef79ec45129/image.png" alt="Certification 3" class="cert-icon">
+                        <div class="cert-buttons">
+                            <a href="https://www.credly.com/badges/817a278f-bf89-4c14-b654-f5ff5127d21b/linked_in_profile" class="btn-icon">🔗</a>
+                            <a href="https://drive.google.com/file/d/14f8blBS1gpE4O1zgf_JUxCQfWGP5GKel/view" class="btn-icon">📥</a>
+                        </div>
+                    </div>
+                    <div class="certification">
+                        <img src="https://images.credly.com/size/680x680/images/4136ced8-75d5-4afb-8677-40b6236e2672/azure-ai-fundamentals-600x600.png" alt="Certification 4" class="cert-icon">
+                        <div class="cert-buttons">
+                            <a href="https://www.credly.com/badges/f12d15a5-8441-4925-a948-592e753b5556/public_url" class="btn-icon">🔗</a>
+                            <a href="https://drive.google.com/file/d/1xbJbRBW26AqjtUgFz8ydfMduwSlOkWsK/view?usp=sharing" class="btn-icon">📥</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Contact Me</h2>
+            <form>
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea placeholder="Your Message" rows="5" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Your Name. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        const phrases = ["Frontend Developer", "SQL Enthusiast", "Cloud Developer"];
+    const typewriterText = document.getElementById("typewriter-text");
+
+    let i = 0;
+
+    function updateText() {
+        typewriterText.textContent = phrases[i];
+        i = (i + 1) % phrases.length; // Loop back to the first phrase
+    }
+
+    // Update text every 3 seconds to sync with animation
+    setInterval(updateText, 1000);
+
+    // Initialize the first phrase
+    updateText();
+
+    const profilePic = document.getElementById('about-image');
+
+// Event listener for clicking the profile picture
+    profilePic.addEventListener('click', () => {
+        // Toggle a border color class on click
+        profilePic.classList.toggle('active-border');
+    });
+
+
+    </script>
+</body>
+</html>
